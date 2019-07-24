@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.baizhi.dao.CarouselDAO">
+
     <select id="selectAll" resultType="Carousel">
         select carousel_id id,title,imgPath,status,create_time createTime from c_carousel
         order by create_time desc
