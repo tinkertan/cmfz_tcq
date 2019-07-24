@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.ArticleDAO">
+    <resultMap id="articleMap" type="Article">
+        <id column="id" property="id"></id>
+        <result column="guruId" property="guruId"></result>
+        <result column="title" property="title"></result>
+        <result column="content" property="content"></result>
+        <result column="publishTime" property="publishTime"></result>
+        <association property="guru" javaType="Guru">
+            <id column="guruId" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="profile" property="profile"></result>
+        </association>
+    </resultMap>
+
+    <select id="selectAll" resultMap="articleMap">
+        select a.article_id id,a.guru_id guruId,a.title,a.content,
+        a.publish_time publishTime,c.name name,c.profile profile from c_article a
+        left join c_guru c on a.guru_id=c.guru_id
+        order by a.publish_time
+        limit #{startIndex},#{pageSize}
+    </select>
+    <select id="selectById" resultType="Article">
+        select article_id id,guru_id guruId,title,content,
+        publish_time publishTime from c_article where article_id=#{id}
+    </select>
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from c_article
+    </select>
+    <insert id="insertArtivcle">
+        insert c_article values (#{id},#{guruId},#{title},#{content},#{publishTime})
+    </insert>
+    <update id="updateArticle">
+        update c_article set guru_id=#{guruId},title=#{title},content=#{content},publish_time=#{publishTime}
+        where article_id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from c_article where article_id = #{id}
+    </delete>
+</mapper>

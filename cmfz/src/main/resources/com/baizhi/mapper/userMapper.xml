@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.UserDAO">
+    <select id="selectAll" resultType="User">
+        select user_id id,phone,dharmaName,province,city,gender,personal_sign personalSign,profile,status,regist_time registTime
+        from c_User limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="selectAllNoPage" resultType="User">
+        select user_id id,phone,dharmaName,province,city,gender,personal_sign personalSign,profile,status,regist_time registTime
+        from c_User
+    </select>
+
+    <select id="selectById" resultType="User">
+        select user_id id,phone,dharmaName,province,city,gender,personal_sign personalSign,profile,status,regist_time registTime
+        from c_User where user_id = #{id}
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        select count(*) from c_user
+    </select>
+
+    <insert id="insertUser">
+        insert into c_user values (#{id},#{phone},#{password},#{salt},#{dharmaname},
+        #{province},#{city},#{gender},#{personalSign},#{profile},#{status},#{registTime})
+    </insert>
+    <select id="selectByPhone" resultType="User">
+        select user_id id,password,salt,phone,dharmaName,province,city,gender,personal_sign personalSign,profile,status,regist_time registTime
+        from c_User where phone = #{phone}
+    </select>
+    <select id="selectByMonth" resultType="Modeldto">
+        select count(*) value ,left(regist_time,7) name from c_user GROUP BY left(regist_time,7)
+    </select>
+    <select id="selectByGender" resultType="Modeldto">
+        select count(*) value,province name from c_user where gender=#{gender} GROUP BY province
+    </select>
+
+
+    <update id="updateUser">
+        update c_user set status=#{status} where user_id = #{id}
+    </update>
+</mapper>

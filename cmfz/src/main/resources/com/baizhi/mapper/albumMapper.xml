@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.AlbumDAO">
+    <select id="selectAll" resultType="Album">
+        select album_id id,title,cover,count,score,author,broadcast,brief,publish_time publishTime from c_album
+        order by publish_time
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from c_album
+    </select>
+
+    <select id="selectById" resultType="Album">
+        select album_id id,title,cover,count,score,author,broadcast,brief,publish_time publishTime from c_album
+        where album_id = #{id}
+    </select>
+
+    <insert id="insertAlbum">
+        insert into c_album values (#{id},#{title},#{cover},#{count},#{score},#{author},#{broadcast},#{brief},#{publishTime})
+    </insert>
+
+    <update id="updateAlbum">
+        update c_album <set>
+            <if test="title!=null">title=#{title}</if>
+            <if test="!(cover==null||cover=='')">,cover=#{cover}</if>
+            <if test="count!=null">,count=#{count}</if>
+            <if test="score!=null">,score=#{score}</if>
+            <if test="author!=null">,author=#{author}</if>
+            <if test="broadcast!=null">,broadcast=#{broadcast}</if>
+            <if test="publishTime!=null">,publish_time=#{publishTime}</if>
+        </set>
+        where album_id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from c_album where album_id = #{id}
+    </delete>
+</mapper>

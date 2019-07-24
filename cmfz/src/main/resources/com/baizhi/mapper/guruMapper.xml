@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.GuruDAO">
+    <select id="selectAll" resultType="Guru">
+        select guru_id id,name,profile,status,sex from c_guru limit #{startIndex},#{pageSize}
+    </select>
+    <select id="selectAllNoPage" resultType="Guru">
+        select guru_id id,name,profile,status,sex from c_guru where status='正常'
+    </select>
+    <select id="selectCount" resultType="Integer">
+        select count(*) from c_guru
+    </select>
+    <select id="selectById" resultType="Guru">
+        select guru_id id,name,profile,status,sex from c_guru where guru_id=#{id}
+    </select>
+    <insert id="insert">
+        insert into c_guru values (#{id},#{name},#{profile},#{status},#{sex})
+    </insert>
+
+    <update id="update">
+        update c_guru
+        <set>
+            <if test="!(profile==null||profile=='')">profile=#{profile}</if>
+            <if test="status!=null">,status=#{status}</if>
+        </set>
+        where guru_id=#{id}
+    </update>
+
+</mapper>

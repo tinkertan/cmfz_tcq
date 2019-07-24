@@ -1,0 +1,3 @@
+User：  userid username  reallyname password  sex age mobile (用来存储用户信息的)
+goods：  goodsid goodname price amount discribe (用来存储商品信息的)
+shoppingCart：userid username goodsid goodsname  price  buyNumber
