@@ -1,8 +1,13 @@
 <%@page isELIgnored="false" pageEncoding="UTF-8" contentType="text/html; UTF-8" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <script type="text/javascript">
     function loadShowCarousel() {
         $("#conterDiv").empty();
-        $("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp");
+        $("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp",{},function (data) {
+            alert(data);
+            console.log(data);
+            $("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp");
+        });
     }
     function loadShowAlbum() {
         $("#conterDiv").empty();
@@ -23,7 +28,9 @@
     }
 
 </script>
+
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne" style="background: #6CE8E8">
             <h4 class="panel-title" >
@@ -40,6 +47,7 @@
             </div>
         </div>
     </div>
+    <shiro:authenticated>
     <div class="panel panel-default" >
         <div class="panel-heading" role="tab" id="headingTwo" style="background: #D87DD8">
             <h4 class="panel-title">
@@ -89,4 +97,23 @@
             </div>
         </div>
     </div>
+    <shiro:hasRole name="vipadmin">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFive" style="background: #FAFA5B">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    管理员管理
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+            <div class="panel-body">
+                <ul type="none" class="nav nav-pills nav-stacked">
+                    <li><a href="javascript:void(0)"  >展示所有管理员</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </shiro:hasRole>
+    </shiro:authenticated>
 </div>

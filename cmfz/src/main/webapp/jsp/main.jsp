@@ -1,5 +1,6 @@
 <%@page isELIgnored="false" pageEncoding="UTF-8" contentType="text/html; UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!doctype html>
 
@@ -37,10 +38,10 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <c:if test="${admin!=null}">
+                    <shiro:authenticated>
                         <li>
                             <a href="#">
-                                欢迎：${sessionScope.admin.username}
+                                欢迎：<shiro:principal></shiro:principal>
                                 <span class="glyphicon glyphicon-user"></span>
                             </a>
                         </li>
@@ -50,15 +51,15 @@
                                 <span class="glyphicon glyphicon-log-out"></span>
                             </a>
                         </li>
-                    </c:if>
-                    <c:if test="${admin==null}">
+                    </shiro:authenticated>
+                    <shiro:notAuthenticated>
                         <li>
                             <a href="${pageContext.request.contextPath}/jsp/login.jsp">
                                 请登录
                                 <span class="glyphicon glyphicon-log-in"></span>
                             </a>
                         </li>
-                    </c:if>
+                    </shiro:notAuthenticated>
                 </ul>
             </div>
         </div>

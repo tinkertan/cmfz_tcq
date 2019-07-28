@@ -13,7 +13,7 @@
     </select>
 
     <select id="selectById" resultType="User">
-        select user_id id,phone,dharmaName,province,city,gender,personal_sign personalSign,profile,status,regist_time registTime
+        select user_id id,password,salt,phone,dharmaName,province,city,gender,personal_sign personalSign,profile,status,regist_time registTime
         from c_User where user_id = #{id}
     </select>
 

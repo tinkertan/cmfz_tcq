@@ -1,3 +1,4 @@
+
 package com.baizhi.aspect;
 
 import com.baizhi.util.SerializeUtils;
@@ -16,6 +17,7 @@ import java.lang.reflect.Method;
 @Configuration
 @org.aspectj.lang.annotation.Aspect
 public class Aspect {
+    /*
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -49,4 +51,6 @@ public class Aspect {
         System.out.println("修改，清空缓存");
         stringRedisTemplate.delete(name);
     }
+     */
 }
+

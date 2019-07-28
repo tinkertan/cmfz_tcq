@@ -1,5 +1,6 @@
 <%@page isELIgnored="false" pageEncoding="UTF-8" contentType="text/html; UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!doctype html>
 
@@ -54,7 +55,7 @@
         </div>
         <div class="col-sm-3">
         <%--中间主--%>
-            <font color="red">${message}</font>
+            <font color="red"></font>
         <form action="${pageContext.request.contextPath}/admin/login" method="post" onsubmit="return check()">
             <div class="form-group">
                 <label for="username">账号</label>
