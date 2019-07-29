@@ -41,6 +41,7 @@
         $("#guruTable").empty();
         $("#guruH2").text("");
         $("#guruPageDiv").empty();
+        $("#queryLikeTable").empty();
         $("#articleTable").jqGrid({
             styleUI:"Bootstrap",
             url:"${pageContext.request.contextPath}/article/queryAll",
@@ -48,7 +49,7 @@
             colNames:["编号","上师姓名","上师id","文章标题","内容","发布时间"],
             colModel:[
                 {name:"id"},
-                {name:"guru.name"},
+                {name:"guruName"},
                 {name:"guruId",editable:true,edittype:'select',editoptions:{value:getGuru()}},
                 {name:"title",editable:true},
                 {name:"id",formatter:function(cellvalue, options, rowObject){
@@ -173,12 +174,65 @@
         });
         $("#addModel").modal('hide');
     }
+
+
+    function query(page) {
+        $("#guruTable").empty();
+        $("#guruH2").text("");
+        $("#guruPageDiv").empty();
+        $("#articleDiv").empty();
+        $("#articleButton").empty();
+        $("#articlePageDiv").empty();
+        var contion = $("#contion").val();
+        var pageSize = $("#pageSizeInput").val();
+        $.ajax({
+            url:"${pageContext.request.contextPath}/article/queryLike",
+            type:"get",
+            data:{"contion":contion,"page":page,"pageSize":pageSize},
+            success:function (data) {
+                showTable(data);
+                showPage(data)
+            }
+        });
+    }
+
+    function showTable(date) {
+        var index = 1;
+        $("#queryLikeTable").empty();
+        $("#queryLikeTable").append("<tr>\n" +
+            "    <td></td>\n" +
+            "    <td>id</td>\n" +
+            "    <td>上师姓名</td>\n" +
+            "    <td>文章标题</td>\n" +
+            "    <td>内容</td>\n" +
+            "    <td>发布时间</td>\n" +
+            "    </tr>")
+        for (c in date.rows){
+            var indexTd = $("<td></td>").text(index);
+            var idTd = $("<td></td>").text(date.rows[c].id);
+            var guruNameTd = $("<td></td>").html(date.rows[c].guruName);
+            var contentTd = $("<td></td>").html("<a class=btn-primary' role='button' style='width:50px;height:50px' href='#' onclick='queryArticleById(\""+date.rows[c].id+"\")'>预览</a>");
+            var titleTd = $("<td></td>").html(date.rows[c].title);
+            var publishTimeTd = $("<td></td>").text(date.rows[c].publishTime);
+            $("#queryLikeTable").append($("<tr></tr>").append(indexTd).append(idTd).append(guruNameTd).append(titleTd)
+                .append(contentTd).append(publishTimeTd));
+            index++;
+        }
+    }
+
+
+
+
 </script>
 
     <h2 id="articleH2"><font color="#07C607">文章管理</font></h2>
     <div align="right" id="articleButton">
         <button class="btn-primary" onclick="queryGuru()">上师管理</button>
     </div>
+    <form class="form-inline" id="queryLikeForm">
+        <input type="text" id="contion"/>
+        <input type="button" value="查询" onclick="query(1)"/>
+    </form>
     <hr/>
 <div id="articleDiv">
     <table id="articleTable"></table>
@@ -236,3 +290,23 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<%--这是文章的模糊查询--%>
+<table id="queryLikeTable" class="table table-bordered table-striped table-hover">
+</table>
+<%--这是分页--%>
+<div align="center">
+    <nav aria-label="Page navigation">
+        <ul class="nav navbar-nav">
+            <li><a href="#" onclick="query(1)"><span class="glyphicon glyphicon-refresh"></span></a><li>
+        </ul>
+        <ul class="nav navbar-nav" id="pageNav">
+        </ul>
+        <ul class="nav navbar-nav">
+            <li><input type='number'id='pageSizeInput' value='2' width="1px" style="width: 40px;height: 33px"/></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="countNum"></li>
+        </ul>
+    </nav>
+</div>

@@ -3,11 +3,22 @@
 <script type="text/javascript">
     function loadShowCarousel() {
         $("#conterDiv").empty();
-        $("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp",{},function (data) {
+        $.ajax({
+            url:"${pageContext.request.contextPath}/jsp/showCarousel.jsp",
+            type:"get",
+            success:function (data) {
+                if(data.indexOf("<!doctype html>")==-1){
+                    $("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp");
+                }else {
+                    window.location.href="${pageContext.request.contextPath}/jsp/login.jsp";
+                }
+            }
+        });
+        /*$("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp",{},function (data) {
             alert(data);
             console.log(data);
             $("#conterDiv").load("${pageContext.request.contextPath}/jsp/showCarousel.jsp");
-        });
+        });*/
     }
     function loadShowAlbum() {
         $("#conterDiv").empty();

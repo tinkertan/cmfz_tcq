@@ -16743,7 +16743,7 @@ hs=function(w,t,c){return w.each(function(){var s=this._jqm;$(t).each(function()
 
 		if (cm.formatoptions !== undefined) {
 			// Deep clone before copying over to op, to avoid creating unintentional references.
-			// Otherwise, the assignment of op.extraparam[p.prmNames.oper] below may persist into the colModel config.
+			// Otherwise, the assignment of op.extraparam[p.prmNames.oper] below may persist into the colModel shiroConfig.
 			var formatoptionsClone = $.extend(true, {}, cm.formatoptions);
 			op = $.extend(op, formatoptionsClone);
 		}

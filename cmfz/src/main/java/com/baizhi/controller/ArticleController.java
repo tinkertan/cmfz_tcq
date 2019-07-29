@@ -85,4 +85,9 @@ public class ArticleController {
     public Article queryById(String id){
        return articleService.queryById(id);
     }
+    @RequestMapping("queryLike")
+    public Map<String,Object> queryLike(String contion,Integer page,Integer pageSize){
+        Map<String, Object> map = articleService.queryLike(contion, page, pageSize);
+        return map;
+    }
 }

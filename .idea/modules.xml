@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/cmfz/cmfz.iml" filepath="$PROJECT_DIR$/cmfz/cmfz.iml" />
       <module fileurl="file://$PROJECT_DIR$/../echars/echars.iml" filepath="$PROJECT_DIR$/../echars/echars.iml" />
       <module fileurl="file://$PROJECT_DIR$/../poi/poi.iml" filepath="$PROJECT_DIR$/../poi/poi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>
   </component>
 </project>

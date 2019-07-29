@@ -12,4 +12,6 @@ public interface ArticleService {
     String addArticle(Article article);
     String modifyArticle(Article article, HttpSession session);
     void removeArticle(String id,HttpSession session);
+
+    Map<String,Object> queryLike(String contion,Integer page,Integer pageSize);
 }

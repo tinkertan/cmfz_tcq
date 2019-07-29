@@ -8,11 +8,7 @@
         <result column="title" property="title"></result>
         <result column="content" property="content"></result>
         <result column="publishTime" property="publishTime"></result>
-        <association property="guru" javaType="Guru">
-            <id column="guruId" property="id"></id>
-            <result column="name" property="name"></result>
-            <result column="profile" property="profile"></result>
-        </association>
+        <result column="name" property="guruName"></result>
     </resultMap>
 
     <select id="selectAll" resultMap="articleMap">

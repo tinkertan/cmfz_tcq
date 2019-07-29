@@ -3110,15 +3110,15 @@
 
     /**
      * 鍔ㄧ敾涓绘帶鍒跺櫒
-     * @config target 鍔ㄧ敾瀵硅薄锛屽彲浠ユ槸鏁扮粍锛屽鏋滄槸鏁扮粍鐨勮瘽浼氭壒閲忓垎鍙憃nframe绛変簨浠�
-     * @config life(1000) 鍔ㄧ敾鏃堕暱
-     * @config delay(0) 鍔ㄧ敾寤惰繜鏃堕棿
-     * @config loop(true)
-     * @config gap(0) 寰幆鐨勯棿闅旀椂闂�
-     * @config onframe
-     * @config easing(optional)
-     * @config ondestroy(optional)
-     * @config onrestart(optional)
+     * @shiroConfig target 鍔ㄧ敾瀵硅薄锛屽彲浠ユ槸鏁扮粍锛屽鏋滄槸鏁扮粍鐨勮瘽浼氭壒閲忓垎鍙憃nframe绛変簨浠�
+     * @shiroConfig life(1000) 鍔ㄧ敾鏃堕暱
+     * @shiroConfig delay(0) 鍔ㄧ敾寤惰繜鏃堕棿
+     * @shiroConfig loop(true)
+     * @shiroConfig gap(0) 寰幆鐨勯棿闅旀椂闂�
+     * @shiroConfig onframe
+     * @shiroConfig easing(optional)
+     * @shiroConfig ondestroy(optional)
+     * @shiroConfig onrestart(optional)
      *
      * TODO pause
      */
@@ -4624,7 +4624,7 @@
 
     /**
      * config榛樿閰嶇疆椤�
-     * @exports zrender/config
+     * @exports zrender/shiroConfig
      * @author Kener (@Kener-鏋楀嘲, kener.linfeng@gmail.com)
      */
 
@@ -14667,8 +14667,8 @@
      * @param {string} props.type Path type
      * @param {Function} props.init Initialize
      * @param {Function} props.buildPath Overwrite buildPath method
-     * @param {Object} [props.style] Extended default style config
-     * @param {Object} [props.shape] Extended default shape config
+     * @param {Object} [props.style] Extended default style shiroConfig
+     * @param {Object} [props.shape] Extended default shape shiroConfig
      */
     Path.extend = function (defaults$$1) {
         var Sub = function (opts) {
@@ -48504,7 +48504,7 @@
 
         /**
          * Init a tree data structure from data in option series
-         * @param  {Object} option  the object used to config echarts view
+         * @param  {Object} option  the object used to shiroConfig echarts view
          * @return {module:echarts/data/List} storage initial data
          */
         getInitialData: function (option) {
@@ -60153,7 +60153,7 @@
         /**
          * Init a graph data structure from data in option series
          *
-         * @param  {Object} option  the object used to config echarts view
+         * @param  {Object} option  the object used to shiroConfig echarts view
          * @return {module:echarts/data/List} storage initial data
          */
         getInitialData: function (option) {
@@ -62932,7 +62932,7 @@
             // When to show the effect, option: 'render'|'emphasis'
             showEffectOn: 'render',
 
-            // Ripple effect config
+            // Ripple effect shiroConfig
             rippleEffect: {
                 period: 4,
                 // Scale of ripple
@@ -63171,7 +63171,7 @@
             this._effectCfg = effectCfg;
         }
         else {
-            // Not keep old effect config
+            // Not keep old effect shiroConfig
             this._effectCfg = null;
 
             this.stopEffectAnimation();
@@ -83750,7 +83750,7 @@
                 }
 
                 // Compatible with previous logic, always give a defautl color, otherwise
-                // simple config with no inRange and outOfRange will not work.
+                // simple shiroConfig with no inRange and outOfRange will not work.
                 // Originally we use visualMap.color as the default color, but setOption at
                 // the second time the default color will be erased. So we change to use
                 // constant DEFAULT_COLOR.

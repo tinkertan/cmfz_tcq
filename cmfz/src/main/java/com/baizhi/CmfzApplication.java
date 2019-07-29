@@ -11,5 +11,4 @@ public class CmfzApplication {
     public static void main(String[] args) {
         SpringApplication.run(CmfzApplication.class, args);
     }
-
 }
